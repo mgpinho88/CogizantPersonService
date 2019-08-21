@@ -12,7 +12,7 @@
 	<artifactId>client-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>client-service</name>
-	<description>Demo project for Spring Boot</description>
+	<description>client-service project for Spring Boot</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -20,6 +20,10 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
@@ -31,6 +35,11 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+			<version>1.4.7.RELEASE</version>
 		</dependency>
 
 		<dependency>
