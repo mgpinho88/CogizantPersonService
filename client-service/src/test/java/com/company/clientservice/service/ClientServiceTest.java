@@ -9,7 +9,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -25,11 +27,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest
 public class ClientServiceTest {
 
-    ClientService service;
-    PersonClient client;
+    private ClientService service;
+    private PersonClient client;
 
 
     @Before
@@ -61,18 +64,29 @@ public class ClientServiceTest {
     @Test
     public void createGetPerson() {
         Person person = new Person();
-        person.setPersonId(1);
+
         person.setName("Mark");
         person.setAge(30);
-        client.createPerson(person);
+        person = client.createPerson(person);
 
         List<Person> fromService = client.getPepleByName("mark");
 
         Person clientPerson = fromService.get(0);
 
+        System.out.println("----Person-----");
+        print(person);
+        System.out.println("-----Service-----");
+        print(clientPerson);
+
         assertEquals(person,clientPerson);
         assertEquals(1, fromService.size());
 
+    }
+
+    private void print(Person person) {
+        System.out.println(person.getPersonId());
+        System.out.println(person.getName());
+        System.out.println(person.getAge());
     }
 
 }

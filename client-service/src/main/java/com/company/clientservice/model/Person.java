@@ -7,21 +7,31 @@ public class Person {
     private Integer personId;
     private String name;
     private Integer age;
+
     public Integer getPersonId() {
         return personId;
     }
+
     public void setPersonId(Integer personId) {
         this.personId = personId;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public Integer getAge() {
         return age;
     }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,11 +41,9 @@ public class Person {
                 name.equals(person.name) &&
                 age.equals(person.age);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(personId, name, age);
-    }
-    public void setAge(Integer age) {
-        this.age = age;
     }
 }
