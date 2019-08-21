@@ -67,9 +67,9 @@ public class ClientServiceTest {
 
         person.setName("Mark");
         person.setAge(30);
-        person = client.createPerson(person);
+        person = service.createPerson(person);
 
-        List<Person> fromService = client.getPepleByName("mark");
+        List<Person> fromService = service.getPersonsByName("mark");
 
         Person clientPerson = fromService.get(0);
 
