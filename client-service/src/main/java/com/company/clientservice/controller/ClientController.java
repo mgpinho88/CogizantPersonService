@@ -21,7 +21,7 @@ public class ClientController {
         return service.createPerson(person);
     }
 
-    @RequestMapping(value = "/clientfe/peron/{name}",method= RequestMethod.GET)
+    @RequestMapping(value = "/clientfe/person/{name}",method= RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Person> getPersonByName(@PathVariable("name") String name){
         return service.getPersonsByName(name);

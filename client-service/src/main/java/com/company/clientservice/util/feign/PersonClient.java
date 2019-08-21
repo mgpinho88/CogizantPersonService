@@ -11,12 +11,12 @@ import java.util.List;
 @FeignClient(name = "person-service")
 public interface PersonClient {
 
-    @RequestMapping(value = "/person/addPerson", method = RequestMethod.POST)
+    @RequestMapping(value = "/person/addperson", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public Person createPerson(@RequestBody @Valid Person person);
+    public Person createPerson(@RequestBody Person person);
 
 
-    @RequestMapping(value = "/person/name", method = RequestMethod.GET)
+    @RequestMapping(value = "/person/{name}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public List<Person> getPepleByName(@PathVariable("name") String name);
 

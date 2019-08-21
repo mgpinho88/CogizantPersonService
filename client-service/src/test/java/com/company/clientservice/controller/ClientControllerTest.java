@@ -48,13 +48,14 @@ public class ClientControllerTest {
         String inputJson = mapper.writeValueAsString(person);
 
         Person person1 = new Person();
+        person1.setPersonId(1);
         person1.setName("Mark");
         person1.setAge(30);
 
 
 
         when(service.createPerson(person)).thenReturn(person1);
-        this.mockMvc.perform(MockMvcRequestBuilders.post("/rsvp")
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/clientfe/addperson")
                 .content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON)
         ).andDo(print()).andExpect(status().isCreated())
