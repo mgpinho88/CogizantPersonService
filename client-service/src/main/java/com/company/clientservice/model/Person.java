@@ -7,29 +7,20 @@ public class Person {
     private Integer personId;
     private String name;
     private Integer age;
-
     public Integer getPersonId() {
         return personId;
     }
-
     public void setPersonId(Integer personId) {
         this.personId = personId;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public Integer getAge() {
         return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     @Override
@@ -37,13 +28,17 @@ public class Person {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return personId.equals(person.personId) &&
-                name.equals(person.name) &&
-                age.equals(person.age);
+        return Objects.equals(personId, person.personId) &&
+                Objects.equals(name, person.name) &&
+                Objects.equals(age, person.age);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(personId, name, age);
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 }

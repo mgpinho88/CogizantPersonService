@@ -10,10 +10,10 @@ import java.util.List;
 @Component
 public class ClientService {
 
-
+    @Autowired
     PersonClient client;
 
-    @Autowired
+
     public ClientService(PersonClient client){
         this.client = client;
     }

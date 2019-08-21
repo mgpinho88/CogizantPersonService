@@ -7,13 +7,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.ws.rs.core.MediaType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
@@ -62,15 +67,22 @@ public class ClientControllerTest {
                 .andExpect(content().json(mapper.writeValueAsString(person1)));
     }
 
-//    @Test
-//    public void getPersonsByName() {
-//        String outputJson = mapper.writeValueAsString(rsvp);
-//        when(client.getRsvp(1)).thenReturn(rsvp);
-//        this.mockMvc.perform(get("/rsvp/1")).andDo(print()).andExpect(status().isOk())
-//                .andExpect(content()
-//                        //Below - use the objectmapper output with the json method
-//                        .json(outputJson));
-//    }
+    @Test
+    public void getPersonsByName() throws Exception{
+        Person person1 = new Person();
+        person1.setPersonId(1);
+        person1.setName("Mark");
+        person1.setAge(30);
+        List<Person> people = new ArrayList<>();
+        people.add(person1);
 
-//    }
+        String outputJson = mapper.writeValueAsString(people);
+        when(service.getPersonsByName("Mark")).thenReturn(people);
+        this.mockMvc.perform(get("/clientfe/person/Mark")).andDo(print()).andExpect(status().isOk())
+                .andExpect(content()
+                        //Below - use the objectmapper output with the json method
+                        .json(outputJson));
+    }
+
+
 }
